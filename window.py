@@ -11,6 +11,68 @@ wlLightGrey = '#D8D8D8'
 
 print(PIL.__version__)
 
+def start_inventory():
+    exit()
+
+def drawTable(table_frame, table_scroll):
+    my_table = ttk.Treeview(table_frame,yscrollcommand=table_scroll.set, xscrollcommand =table_scroll.set)
+    #my_table.pack()
+
+    table_scroll.config(command=my_table.yview)
+    table_scroll.config(command=my_table.xview)
+
+    #define our column
+     
+    my_table['columns'] = ('player_id', 'player_name', 'player_Rank', 'player_states', 'player_city')
+
+    # format our column
+
+    windowWidth = int(table_frame.winfo_reqwidth()) #.values.astype(int)
+    print(windowWidth)
+    cwidth = int((windowWidth-120)/5)
+    
+    my_table.column("#0", width=0,  stretch=NO)
+    my_table.column("player_id",anchor=CENTER, width=cwidth)
+    my_table.column("player_name",anchor=CENTER,width=cwidth)
+    my_table.column("player_Rank",anchor=CENTER,width=cwidth)
+    my_table.column("player_states",anchor=CENTER,width=cwidth)
+    my_table.column("player_city",anchor=CENTER,width=cwidth)
+
+    #Create Headings
+    
+    my_table.heading("#0",text="",anchor=CENTER)
+    my_table.heading("player_id",text="Id",anchor=CENTER)
+    my_table.heading("player_name",text="Name",anchor=CENTER)
+    my_table.heading("player_Rank",text="Rank",anchor=CENTER)
+    my_table.heading("player_states",text="States",anchor=CENTER)
+    my_table.heading("player_city",text="States",anchor=CENTER)
+
+    #add data 
+    my_table.insert(parent='',index='end',iid=0,text='',
+    values=('1','Ninja','101','Oklahoma', 'Moore'))
+    my_table.insert(parent='',index='end',iid=1,text='',
+    values=('2','Ranger','102','Wisconsin', 'Green Bay'))
+    my_table.insert(parent='',index='end',iid=2,text='',
+    values=('3','Deamon','103', 'California', 'Placentia'))
+    my_table.insert(parent='',index='end',iid=3,text='',
+    values=('4','Dragon','104','New York' , 'White Plains'))
+    my_table.insert(parent='',index='end',iid=4,text='',
+    values=('5','CrissCross','105','California', 'San Diego'))
+    my_table.insert(parent='',index='end',iid=5,text='',
+    values=('6','ZaqueriBlack','106','Wisconsin' , 'TONY'))
+    my_table.insert(parent='',index='end',iid=6,text='',
+    values=('7','RayRizzo','107','Colorado' , 'Denver'))
+    my_table.insert(parent='',index='end',iid=7,text='',
+    values=('8','Byun','108','Pennsylvania' , 'ORVISTON'))
+    my_table.insert(parent='',index='end',iid=8,text='',
+    values=('9','Trink','109','Ohio' , 'Cleveland'))
+    my_table.insert(parent='',index='end',iid=9,text='',
+    values=('10','Twitch','110','Georgia' , 'Duluth'))
+    my_table.insert(parent='',index='end',iid=10,text='',
+    values=('11','Animus','111', 'Connecticut' , 'Hartford'))
+    return my_table
+    
+
 def createBasicLayout():
 
     # Create a window object of tk
@@ -79,7 +141,7 @@ def createBasicLayout():
 
     btnSectionMembers = Button(mainWindow, text='Mitglieder')
     btnSectionAccounting = Button(mainWindow, text='Buchführung')
-    btnSectionInventory = Button(mainWindow, text='Inventar')
+    btnSectionInventory = Button(mainWindow, text='Inventar', command=lambda: start_inventory())
     # btnSectionConfig = Button(mainWindow, text='EINST')
     # btnSectionConfig = Button(mainWindow, style='W.TButton', text='EINST')
     btnSectionMembers.place(x=btnStartX, y=heightTitleBar-heightNaviBar+6, width=btnWidth, height=heightNaviBar+heightSeperator-12)
@@ -107,7 +169,7 @@ def createBasicLayout():
 
     # Draw Table
 
-    table_frame = Frame(mainWindow)
+    table_frame = Frame(mainWindow,  width=windowWidth-separator-120, height=windowHeight-heightBottomBar-heightTitleBar-2*separator, relief='raised', borderwidth=5) 
     table_frame.pack()
 
     #scrollbar
@@ -118,59 +180,7 @@ def createBasicLayout():
     table_scroll = Scrollbar(table_frame,orient='horizontal')
     table_scroll.pack(side= BOTTOM,fill=X)
 
-    my_table = ttk.Treeview(table_frame,yscrollcommand=table_scroll.set, xscrollcommand =table_scroll.set)
-    #my_table.pack()
-
-    table_scroll.config(command=my_table.yview)
-    table_scroll.config(command=my_table.xview)
-
-    #define our column
-     
-    my_table['columns'] = ('player_id', 'player_name', 'player_Rank', 'player_states', 'player_city')
-
-    # format our column
-
-    cwidth = int((windowWidth-separator-120)/5)
-    
-    my_table.column("#0", width=0,  stretch=NO)
-    my_table.column("player_id",anchor=CENTER, width=cwidth)
-    my_table.column("player_name",anchor=CENTER,width=cwidth)
-    my_table.column("player_Rank",anchor=CENTER,width=cwidth)
-    my_table.column("player_states",anchor=CENTER,width=cwidth)
-    my_table.column("player_city",anchor=CENTER,width=cwidth)
-
-    #Create Headings
-    
-    my_table.heading("#0",text="",anchor=CENTER)
-    my_table.heading("player_id",text="Id",anchor=CENTER)
-    my_table.heading("player_name",text="Name",anchor=CENTER)
-    my_table.heading("player_Rank",text="Rank",anchor=CENTER)
-    my_table.heading("player_states",text="States",anchor=CENTER)
-    my_table.heading("player_city",text="States",anchor=CENTER)
-
-    #add data 
-    my_table.insert(parent='',index='end',iid=0,text='',
-    values=('1','Ninja','101','Oklahoma', 'Moore'))
-    my_table.insert(parent='',index='end',iid=1,text='',
-    values=('2','Ranger','102','Wisconsin', 'Green Bay'))
-    my_table.insert(parent='',index='end',iid=2,text='',
-    values=('3','Deamon','103', 'California', 'Placentia'))
-    my_table.insert(parent='',index='end',iid=3,text='',
-    values=('4','Dragon','104','New York' , 'White Plains'))
-    my_table.insert(parent='',index='end',iid=4,text='',
-    values=('5','CrissCross','105','California', 'San Diego'))
-    my_table.insert(parent='',index='end',iid=5,text='',
-    values=('6','ZaqueriBlack','106','Wisconsin' , 'TONY'))
-    my_table.insert(parent='',index='end',iid=6,text='',
-    values=('7','RayRizzo','107','Colorado' , 'Denver'))
-    my_table.insert(parent='',index='end',iid=7,text='',
-    values=('8','Byun','108','Pennsylvania' , 'ORVISTON'))
-    my_table.insert(parent='',index='end',iid=8,text='',
-    values=('9','Trink','109','Ohio' , 'Cleveland'))
-    my_table.insert(parent='',index='end',iid=9,text='',
-    values=('10','Twitch','110','Georgia' , 'Duluth'))
-    my_table.insert(parent='',index='end',iid=10,text='',
-    values=('11','Animus','111', 'Connecticut' , 'Hartford'))
+    my_table = drawTable(table_frame, table_scroll)
 
     my_table.pack()
     table_frame.place(x=separator+120, y=separator+heightTitleBar, width=windowWidth-separator-120, height=windowHeight-heightBottomBar-heightTitleBar-2*separator)
