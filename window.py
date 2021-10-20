@@ -22,7 +22,7 @@ def createBasicLayout():
 
     # Show app title
     appName = 'WAK-Lab Organizer'
-    appVersion = '0.1.0-alpha.1'
+    appVersion = '0.1.0-alpha.2'
     appCopyright = chr(64) + ' WAK-Lab e.V.'
 
     mainWindow.title(appName + ' - v' + appVersion)
