@@ -22,14 +22,9 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self,parent)
 
-        windowWidth = controller.winfo_reqwidth()
-        windowHeight = controller.winfo_reqheight()
-        # kacke
-        windowWidth = 1400
-        windowHeight = 700 # 900
-
-        print(windowWidth)
-        print(windowHeight)
+        windowWidth =  controller.windowWidth
+        windowHeight = controller.windowHeight
+        print(windowWidth,'x',windowHeight)
         
         mainCanvas = Canvas(self, width=windowWidth, height=windowHeight, highlightthickness=0, borderwidth=0)
         mainCanvas.pack()

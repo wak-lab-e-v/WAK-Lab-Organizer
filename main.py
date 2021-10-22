@@ -1,20 +1,19 @@
+from sys import version_info
+print(version_info)
+
 from window import *
 
 # Create main window
 #createBasicLayout()
 
-# Show app title
-
-# Define size of app window
-windowWidth = 1400
-windowHeight = 700 # 900
-
-
-
 class WakLabOrg(tk.Tk):
+    # Show app title
     appName = 'WAK-Lab Organizer'
     appVersion = '0.1.0-alpha.2'
     appCopyright = chr(64) + ' WAK-Lab e.V.'
+    # Define size of app window
+    windowWidth = 1400
+    windowHeight = 700 # 900    
     
     def __init__(self, *args, **kwargs):
         
@@ -24,17 +23,19 @@ class WakLabOrg(tk.Tk):
         # Get screen resolution
         screenWidth = self.winfo_screenwidth()
         screenHeight = self.winfo_screenheight()
+        #print(screenWidth,'x',screenHeight)
 
         # Get offset for center position
-        centerX = int(screenWidth/2 - windowWidth/2)
-        centerY = int(screenHeight/2 - windowHeight/2)
+        centerX = int(screenWidth/2 - self.windowWidth/2)
+        centerY = int(screenHeight/2 - self.windowHeight/2)
+        #print(windowWidth,'x',windowHeight)
 
         # Fixed window size
-        self.minsize(windowWidth, windowHeight)
-        self.maxsize(windowWidth, windowHeight)
+        self.minsize(self.windowWidth, self.windowHeight)
+        self.maxsize(self.windowWidth, self.windowHeight)
 
         # Place window and create Canvas
-        self.geometry(f'{windowWidth}x{windowHeight}+{centerX}+{centerY}')
+        self.geometry(f'{self.windowWidth}x{self.windowHeight}+{centerX}+{centerY}')
         
         container = tk.Frame(self)
 
