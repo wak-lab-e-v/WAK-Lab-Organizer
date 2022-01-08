@@ -1,7 +1,5 @@
 from tkinter import font, ttk
-from tkinter import *
 import tkinter as tk
-from tkinter.ttk import *
 from PIL import Image, ImageTk
 import PIL
 
@@ -20,13 +18,13 @@ def start_inventory():
 class StartPage(tk.Frame):
     
     def __init__(self, parent, controller):
-        Frame.__init__(self,parent)
+        ttk.Frame.__init__(self,parent)
 
         windowWidth =  controller.windowWidth
         windowHeight = controller.windowHeight
         print(windowWidth,'x',windowHeight)
         
-        mainCanvas = Canvas(self, width=windowWidth, height=windowHeight, highlightthickness=0, borderwidth=0)
+        mainCanvas = tk.Canvas(self, width=windowWidth, height=windowHeight, highlightthickness=0, borderwidth=0)
         mainCanvas.pack()
 
         ### Draw GUI elements
@@ -42,7 +40,7 @@ class StartPage(tk.Frame):
         heightTitleBar = 200
 
         mainCanvas.create_rectangle(0, 0, windowWidth, heightTitleBar, fill=wlGreen, width=0)
-        mainCanvas.create_text(30, 80, fill='white', anchor=W, font='Verdana 40 bold', text=controller.appName)
+        mainCanvas.create_text(30, 80, fill='white', anchor=tk.W, font='Verdana 40 bold', text=controller.appName)
         
         # Draw navigation bar
         
@@ -58,12 +56,12 @@ class StartPage(tk.Frame):
         btnStartX = 610
         btnWidth = 160
         btnSeperator = (windowWidth-btnStartX-btnCount*btnWidth)/btnCount
-        btnStyle = Style()
+        btnStyle = ttk.Style()
         btnStyle.configure('W.TButton', background='#232323', font=('Arial', 12))
 
-        btnSectionMembers = Button(self, text='Mitglieder', command=lambda: controller.show_frame(PageOne))
-        btnSectionAccounting = Button(self, text='Buchführung', command=lambda: controller.show_frame(PageTwo))
-        btnSectionInventory = Button(self, text='Inventar', command=lambda: start_inventory())
+        btnSectionMembers = ttk.Button(self, text='Mitglieder', command=lambda: controller.show_frame(PageOne))
+        btnSectionAccounting = ttk.Button(self, text='Buchführung', command=lambda: controller.show_frame(PageTwo))
+        btnSectionInventory = ttk.Button(self, text='Inventar', command=lambda: start_inventory())
         # btnSectionConfig = Button(mainWindow, text='EINST')
         # btnSectionConfig = Button(mainWindow, style='W.TButton', text='EINST')
         btnSectionMembers.place(x=btnStartX, y=heightTitleBar-heightNaviBar+6, width=btnWidth, height=heightNaviBar+heightSeperator-12)
@@ -91,16 +89,16 @@ class StartPage(tk.Frame):
 
         # Draw Table
 
-        table_frame = Frame(self,  width=windowWidth-separator-120, height=windowHeight-heightBottomBar-heightTitleBar-2*separator, relief='raised', borderwidth=5) 
+        table_frame = ttk.Frame(self,  width=windowWidth-separator-120, height=windowHeight-heightBottomBar-heightTitleBar-2*separator, relief='raised', borderwidth=5) 
         table_frame.pack()
 
         #scrollbar
         
-        table_scroll = Scrollbar(table_frame)
-        table_scroll.pack(side=RIGHT, fill=Y)
+        table_scroll = ttk.Scrollbar(table_frame)
+        table_scroll.pack(side=tk.RIGHT, fill=tk.Y)
 
-        table_scroll = Scrollbar(table_frame,orient='horizontal')
-        table_scroll.pack(side= BOTTOM,fill=X)
+        table_scroll = ttk.Scrollbar(table_frame,orient='horizontal')
+        table_scroll.pack(side= tk.BOTTOM,fill=tk.X)  
 
         my_table = self.drawTable(table_frame, table_scroll)
 
@@ -111,8 +109,8 @@ class StartPage(tk.Frame):
         
         mainCanvas.create_rectangle(0, windowHeight-heightBottomBar-heightSeperator, windowWidth, windowHeight-heightBottomBar, fill=wlGreen, width=0)
         mainCanvas.create_rectangle(0, windowHeight-heightBottomBar, windowWidth, windowHeight, fill=wlGrey, width=0)
-        mainCanvas.create_text(10, windowHeight-heightBottomBar/2, fill='white', anchor=W, font='Verdana', text=controller.appCopyright)
-        mainCanvas.create_text(windowWidth-10, windowHeight-heightBottomBar/2, fill='white', anchor=E, font='Verdana', text=controller.appVersion)
+        mainCanvas.create_text(10, windowHeight-heightBottomBar/2, fill='white', anchor=tk.W, font='Verdana', text=controller.appCopyright)
+        mainCanvas.create_text(windowWidth-10, windowHeight-heightBottomBar/2, fill='white', anchor=tk.E, font='Verdana', text=controller.appVersion)
 
         # Show logo
         # logo = Image.open('images/logo-current-version.png')
@@ -141,21 +139,21 @@ class StartPage(tk.Frame):
         #print(windowWidth)
         cwidth = int((windowWidth-120)/5)
         
-        my_table.column("#0", width=0,  stretch=NO)
-        my_table.column("player_id",anchor=CENTER, width=cwidth)
-        my_table.column("player_name",anchor=CENTER,width=cwidth)
-        my_table.column("player_Rank",anchor=CENTER,width=cwidth)
-        my_table.column("player_states",anchor=CENTER,width=cwidth)
-        my_table.column("player_city",anchor=CENTER,width=cwidth)
+        my_table.column("#0", width=0,  stretch=tk.NO)
+        my_table.column("player_id",anchor=tk.CENTER, width=cwidth)
+        my_table.column("player_name",anchor=tk.CENTER,width=cwidth)
+        my_table.column("player_Rank",anchor=tk.CENTER,width=cwidth)
+        my_table.column("player_states",anchor=tk.CENTER,width=cwidth)
+        my_table.column("player_city",anchor=tk.CENTER,width=cwidth)
 
         #Create Headings
         
-        my_table.heading("#0",text="",anchor=CENTER)
-        my_table.heading("player_id",text="Id",anchor=CENTER)
-        my_table.heading("player_name",text="Name",anchor=CENTER)
-        my_table.heading("player_Rank",text="Rank",anchor=CENTER)
-        my_table.heading("player_states",text="States",anchor=CENTER)
-        my_table.heading("player_city",text="States",anchor=CENTER)
+        my_table.heading("#0",text="",anchor=tk.CENTER)
+        my_table.heading("player_id",text="Id",anchor=tk.CENTER)
+        my_table.heading("player_name",text="Name",anchor=tk.CENTER)
+        my_table.heading("player_Rank",text="Rank",anchor=tk.CENTER)
+        my_table.heading("player_states",text="States",anchor=tk.CENTER)
+        my_table.heading("player_city",text="States",anchor=tk.CENTER)
 
         #add data 
         my_table.insert(parent='',index='end',iid=0,text='',
@@ -188,14 +186,14 @@ class PageOne(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page One!!!", font=LARGE_FONT)
+        label = ttk.Label(self, text="Page One!!!", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = ttk.Button(self, text="Back to Home",
                             command=lambda: controller.show_frame(StartPage))
         button1.pack()
 
-        button2 = tk.Button(self, text="Page Two",
+        button2 = ttk.Button(self, text="Page Two",
                             command=lambda: controller.show_frame(PageTwo))
         button2.pack()
 
@@ -203,14 +201,14 @@ class PageTwo(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page Two!!!", font=LARGE_FONT)
+        label = ttk.Label(self, text="Page Two!!!", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = ttk.Button(self, text="Back to Home",
                             command=lambda: controller.show_frame(StartPage))
         button1.pack()
 
-        button2 = tk.Button(self, text="Page One",
+        button2 = ttk.Button(self, text="Page One",
                             command=lambda: controller.show_frame(PageOne))
         button2.pack()
         

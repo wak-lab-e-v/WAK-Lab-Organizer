@@ -26,4 +26,7 @@
 hs_err_pid*
 
 *.pyc
-__pycache__/
+__pycache__/           # my understanding is that this would ignore all pycache   recursively 
+/__pycache__/window.cpython-39.pyc
+
+config.json
